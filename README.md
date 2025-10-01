@@ -1,5 +1,6 @@
 Fyyur
 -----
+# Project Description
 
 ## Introduction
 
@@ -138,47 +139,54 @@ Best of luck in your final project! Fyyur depends on you!
 ## Development Setup
 1. **Download the project starter code locally**
 ```
-git clone https://github.com/udacity/FSND.git
+https://github.com/ShawnCai223/Fyyur-JianxiaoCai.git
 cd FSND/projects/01_fyyur/starter_code 
 ```
 
-2. **Create an empty repository in your Github account online. To change the remote repository path in your local repository, use the commands below:**
+2. **Create a virtual environment**
 ```
-git remote -v 
-git remote remove origin 
-git remote add origin <https://github.com/<USERNAME>/<REPO_NAME>.git>
-git branch -M master
-```
-Once you have finished editing your code, you can push the local repository to your Github account using the following commands.
-```
-git add . --all   
-git commit -m "your comment"
-git push -u origin master
+python3 -m venv venv
+source venv/bin/activate   # On macOS/Linux
+venv\Scripts\activate      # On Windows
 ```
 
-3. **Initialize and activate a virtualenv using:**
-```
-python -m virtualenv env
-source env/bin/activate
-```
->**Note** - In Windows, the `env` does not have a `bin` directory. Therefore, you'd use the analogous command shown below:
-```
-source env/Scripts/activate
-```
-
-4. **Install the dependencies:**
+3. **Install the dependencies:**
 ```
 pip install -r requirements.txt
 ```
 
-5. **Run the development server:**
-```
-export FLASK_APP=myapp
-export FLASK_ENV=development # enables debug mode
-python3 app.py
+4. **Configure the database**
+
+Create a PostgreSQL database:
+
+```bash
+createdb fyyur
 ```
 
-6. **Verify on the Browser**<br>
+Check config.py and ensure your database URI is correct, for example:
+
+```python
+SQLALCHEMY_DATABASE_URI = 'postgresql://username:password@localhost:5432/fyyur'
+```
+
+5. **Run migrations**
+```
+flask db init      # first time only
+flask db migrate   # generate migration script
+flask db upgrade   # apply migration
+```
+
+6. (Optional) Seed sample data
+```
+python seed.py
+```
+
+7. **Verify on the Browser**<br>
 Navigate to project homepage [http://127.0.0.1:5000/](http://127.0.0.1:5000/) or [http://localhost:5000](http://localhost:5000) 
 
-# Fyyur-JianxiaoCai
+
+### License
+
+This project is for educational purposes as part of Udacity’s Full Stack Nanodegree.
+
+Feel free to use and modify for learning.
